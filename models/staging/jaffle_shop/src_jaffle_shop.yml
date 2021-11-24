@@ -1,0 +1,24 @@
+version: 2
+
+sources:
+    - name: jaffle_shop
+      description: comes from dbt tutorial
+      database: raw
+      tables:
+        - name: customers
+          description: raw customer data
+          columns:
+            - name: id
+              tests:
+                - unique
+                - not_null
+        - name: orders
+          description: raw order data
+          columns:
+            - name: id
+              description: primary key for orders
+              tests:
+                - unique
+                - not_null
+
+

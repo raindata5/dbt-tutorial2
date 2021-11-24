@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: stripe
+    description: just a schema for payments
+    database: raw
+    tables:
+      - name: payment
+        loaded_at_field: _batched_at
+        freshness:
+          warn_after: {count: 24, period: hour}
+          error_after: {count: 96, period: hour}
+        columns:
+          - name: orderid
+            description: the id's of the orders
+            tests:
+              - not_null
+              
